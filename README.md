@@ -89,6 +89,27 @@ https://github.com/A8Chann/dsh-pet-live2d
 
 然后重启 DSH。
 
+## Windows 安装
+
+把路径里的 `~/.dsh/` 换成 `%USERPROFILE%\.dsh\`：
+
+| 用途 | macOS | Windows |
+|---|---|---|
+| 模型目录 | `~/.dsh/pets/ds-whale-girl/` | `%USERPROFILE%\.dsh\pets\ds-whale-girl\` |
+| 主配置 | `~/.dsh/dsh-pet/main-config.jsonc` | `%USERPROFILE%\.dsh\dsh-pet\main-config.jsonc` |
+| 高清动画 | `~/.dsh/profiles/desktop/node_modules/dsh-pet/assets/webm/` | `%USERPROFILE%\.dsh\profiles\desktop\node_modules\dsh-pet\assets\webm\` |
+
+### 兼容性
+
+| 平台 | webm + alpha | 说明 |
+|---|---|---|
+| Windows Chrome / Edge | ✅ | 直接播放 |
+| Windows Electron（桌面模式） | ✅ | 直接播放 |
+| macOS Chrome / Electron | ✅ | 直接播放 |
+| macOS Safari | ❌ | 不认 webm alpha，会显示黑底 |
+
+> **Windows 未实测。** 本版主要在 macOS 上验证；Windows 的路径大小写、配置合并可能有问题，遇到请在 Issues 反馈。
+
 ## 高清化说明
 
 原动画是 640×360 预渲染视频，在 Retina 屏上被放大 1.9 倍，所以显糊。
