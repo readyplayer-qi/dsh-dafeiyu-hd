@@ -110,6 +110,11 @@ https://github.com/A8Chann/dsh-pet-live2d
 
 > **Windows 未实测。** 本版主要在 macOS 上验证；Windows 的路径大小写、配置合并可能有问题，遇到请在 Issues 反馈。
 
+## 上游更新
+
+本仓库是衍生作品，**不是 fork**，上游更新不会自动同步。
+跟进流程见 [UPSTREAM.md](UPSTREAM.md)。
+
 ## 高清化说明
 
 原动画是 640×360 预渲染视频，在 Retina 屏上被放大 1.9 倍，所以显糊。
