@@ -45,8 +45,8 @@ config/                工作状态台词、人设、动作映射（可直接抄
 tools/                 超分脚本、成长记脚本（MIT）
 release/               高清动画包的打包说明
 NOTICE.md              署名链 + 修改清单
-LICENSE-ART.txt        CC BY-NC-SA 4.0 全文
-LICENSE-CODE.txt       MIT 全文
+LICENSE                CC BY-NC-SA 4.0 全文（主协议）
+licenses/MIT.txt       代码部分（MIT）
 ```
 
 ## 安装

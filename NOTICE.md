@@ -10,7 +10,7 @@
 | DeepSeek 女仆二创 | **ZipZipPipe** | https://www.pixiv.net/users/18604994 |
 | Live2D 模型 | **氵六青** | https://space.bilibili.com/11272072 |
 
-完整协议见 `LICENSE-ART.txt`（CC BY-NC-SA 4.0）。
+完整协议见仓库根目录 `LICENSE`（CC BY-NC-SA 4.0）。
 
 **不得用于商业用途。** 商业使用需分别获得以上三位作者的授权。
 
