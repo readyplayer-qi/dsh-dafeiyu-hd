@@ -1,5 +1,10 @@
 # 大肥鱼 · Live2D 桌宠（个人向修改版）
 
+![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)
+![Non-Commercial](https://img.shields.io/badge/%E7%A6%81%E6%AD%A2%E5%95%86%E7%94%A8-NonCommercial-red.svg)
+
+> ⚠️ **本作品仅供个人非商业使用。** 美术素材版权归原作者，商业使用需单独授权。
+
 > 基于 [DS鲸鱼娘](https://space.bilibili.com/11272072) 的非商业个人改版。
 > 台词改为“女儿”口吻、动作重映射、全部动画高清化到 1280×720。
 
