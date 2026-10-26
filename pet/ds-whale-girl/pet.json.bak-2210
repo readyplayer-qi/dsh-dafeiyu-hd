@@ -1,0 +1,743 @@
+{
+  "petManifestVersion": 2,
+  "id": "ds-whale-girl",
+  "displayName": "DS鲸鱼娘",
+  "description": "氵六青的 DS 鲸鱼娘 Live2D 桌宠：8 组动作 + 44 个表情/道具，点她会有反应。",
+  "version": "1.1.2",
+  "author": "模型：上善无形 / ZipZipPipe / 氵六青 · 插件：A8Chann",
+  "license": "CC BY-NC-SA 4.0 (attribution, NON-COMMERCIAL, share-alike). Character: original OC by 上善无形 (https://www.pixiv.net/users/62155430); DeepSeek maid redesign by ZipZipPipe (https://www.pixiv.net/users/18604994); this Live2D model by 氵六青 (https://space.bilibili.com/11272072), who authorised redistribution here — which does NOT lift the base NC/SA terms. Commercial use requires permission from each rights holder. See NOTICE.md.",
+  "homepage": "https://space.bilibili.com/11272072",
+  "renderer": "live2d",
+  "live2d": {
+    "model": "c_0120.model3.json",
+    "scale": 1,
+    "translate": {
+      "x": 0,
+      "y": 0
+    },
+    "motions": {
+      "idle": "Idle",
+      "waiting": "Idle",
+      "thinking": "Idle",
+      "tool": "Idle",
+      "done": "BubbleGum",
+      "failed": "SprayWater"
+    },
+    "expressions": {},
+    "motionOptions": {
+      "Hammer": {
+        "fidget": false
+      },
+      "SprayWater": {
+        "preset": {
+          "jingyu": 1
+        },
+        "fidget": false,
+        "hold": true,
+        "persist": true
+      },
+      "BubbleGum": {
+        "hold": true,
+        "persist": true
+      },
+      "OpenCase": {
+        "hold": true
+      },
+      "Selfie": {
+        "holdParams": {
+          "phone5": 10
+        }
+      }
+    },
+    "expressionSlots": [
+      {
+        "id": "glasses",
+        "label": "眼镜",
+        "none": "无",
+        "options": [
+          {
+            "label": "圆眼镜",
+            "expressions": [
+              "圆眼镜"
+            ]
+          },
+          {
+            "label": "方眼镜",
+            "expressions": [
+              "方眼镜"
+            ]
+          },
+          {
+            "label": "椭圆眼镜",
+            "expressions": [
+              "椭圆眼镜"
+            ]
+          },
+          {
+            "label": "墨镜",
+            "expressions": [
+              "墨镜"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "sticker",
+        "label": "贴纸",
+        "none": "无",
+        "options": [
+          {
+            "label": "猫猫",
+            "expressions": [
+              "猫猫贴纸"
+            ],
+            "fidget": false
+          },
+          {
+            "label": "兔兔",
+            "expressions": [
+              "兔兔贴纸"
+            ]
+          },
+          {
+            "label": "蝴蝶结",
+            "expressions": [
+              "蝴蝶结贴纸"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "hair",
+        "label": "发饰",
+        "none": "戴着",
+        "options": [
+          {
+            "label": "摘掉发箍",
+            "expressions": [
+              "头箍"
+            ]
+          },
+          {
+            "label": "单边马尾",
+            "expressions": [
+              "单边马尾"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "cloth",
+        "label": "桌布",
+        "none": "白色",
+        "options": [
+          {
+            "label": "黑色",
+            "expressions": [
+              "深色桌布"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "claw",
+        "label": "魔爪",
+        "none": "无",
+        "options": [
+          {
+            "label": "粉魔爪",
+            "expressions": [
+              "桌面粉魔爪"
+            ]
+          },
+          {
+            "label": "白魔爪",
+            "expressions": [
+              "桌面粉魔爪",
+              "魔爪换色"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "whale",
+        "label": "鲸鱼",
+        "none": "无",
+        "options": [
+          {
+            "label": "头顶鲸",
+            "expressions": [
+              "头顶鲸"
+            ]
+          },
+          {
+            "label": "放桌上",
+            "expressions": [
+              "鲸鱼放桌上"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "desk",
+        "label": "桌面摆设",
+        "none": "无",
+        "options": [
+          {
+            "label": "巴菲",
+            "expressions": [
+              "桌面巴菲"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "rhand",
+        "label": "右手",
+        "none": "无",
+        "options": [
+          {
+            "label": "掏出手机",
+            "motion": "OpenCase",
+            "fidgetWeight": 4
+          },
+          {
+            "label": "喵喵手",
+            "expressions": [
+              "喵喵手"
+            ],
+            "pairs": {
+              "sticker": "猫猫"
+            },
+            "fidgetWeight": 1
+          },
+          {
+            "label": "双手比耶",
+            "expressions": [
+              "双手比耶"
+            ],
+            "breaks": [
+              "猫猫"
+            ],
+            "fidgetWeight": 4
+          },
+          {
+            "label": "挤番茄酱",
+            "motion": "Ketchup",
+            "expressions": [
+              "挤番茄酱"
+            ],
+            "requires": [
+              "蛋包饭"
+            ],
+            "breaks": [
+              "猫猫"
+            ],
+            "fidgetWeight": 1
+          },
+          {
+            "label": "写本本",
+            "expressions": [
+              "点菜按下"
+            ],
+            "clears": [
+              "lhand"
+            ],
+            "sweep": {
+              "x": "pointX",
+              "y": "pointY",
+              "rz": "pointY2",
+              "z": "pointZ",
+              "ampX": 16,
+              "ampY": 9,
+              "ampZ": 7,
+              "loopMs": 2800,
+              "driftMs": 21000,
+              "driftY": 3
+            },
+            "breaks": [
+              "猫猫"
+            ],
+            "fidget": false
+          }
+        ],
+        "fidgetNone": 1
+      },
+      {
+        "id": "selfie",
+        "label": "自拍",
+        "none": "无",
+        "options": [
+          {
+            "label": "自拍",
+            "motion": "Selfie",
+            "fidgetWeight": 1,
+            "requires": [
+              "掏出手机"
+            ]
+          },
+          {
+            "label": "快速自拍",
+            "motion": "SelfieQuick",
+            "fidget": false
+          }
+        ],
+        "fidgetNone": 1
+      },
+      {
+        "id": "lhand",
+        "label": "左手",
+        "none": "无",
+        "options": [
+          {
+            "label": "撤回",
+            "expressions": [
+              "撤回"
+            ],
+            "fidget": false
+          },
+          {
+            "label": "画笔",
+            "expressions": [
+              "画笔"
+            ],
+            "fidget": false
+          },
+          {
+            "label": "橡皮",
+            "expressions": [
+              "橡皮"
+            ],
+            "fidget": false
+          },
+          {
+            "label": "蛋包饭",
+            "expressions": [
+              "蛋包饭"
+            ]
+          }
+        ],
+        "fidgetNone": 1
+      },
+      {
+        "id": "eyes",
+        "label": "眼部",
+        "none": "默认",
+        "options": [
+          {
+            "label": "星星眼",
+            "expressions": [
+              "星星眼"
+            ],
+            "fidget": false
+          },
+          {
+            "label": "爱心眼",
+            "expressions": [
+              "爱心眼"
+            ],
+            "pairs": {
+              "heart": "冒爱心"
+            },
+            "fidgetWeight": 1
+          },
+          {
+            "label": "呆呆眼",
+            "expressions": [
+              "呆呆眼"
+            ],
+            "conflicts": [
+              "开心兴奋",
+              "闭眼口水"
+            ],
+            "fidget": false
+          },
+          {
+            "label": "晕晕",
+            "expressions": [
+              "晕晕"
+            ],
+            "conflicts": [
+              "开心兴奋",
+              "闭眼口水",
+              "大哭"
+            ],
+            "fidget": false
+          },
+          {
+            "label": "阴暗",
+            "expressions": [
+              "阴暗"
+            ],
+            "fidget": false
+          }
+        ],
+        "fidgetNone": 10
+      },
+      {
+        "id": "mood",
+        "label": "情绪",
+        "none": "平静",
+        "options": [
+          {
+            "label": "开心兴奋",
+            "expressions": [
+              "开心兴奋"
+            ],
+            "conflicts": [
+              "呆呆眼",
+              "晕晕"
+            ],
+            "fidgetWeight": 5
+          },
+          {
+            "label": "悲伤",
+            "expressions": [
+              "悲伤"
+            ],
+            "fidget": false
+          },
+          {
+            "label": "大哭",
+            "expressions": [
+              "大哭"
+            ],
+            "conflicts": [
+              "晕晕"
+            ],
+            "fidget": false
+          },
+          {
+            "label": "生气",
+            "expressions": [
+              "生气"
+            ],
+            "fidget": false
+          },
+          {
+            "label": "调皮",
+            "expressions": [
+              "调皮"
+            ],
+            "fidgetWeight": 5
+          },
+          {
+            "label": "闭眼口水",
+            "expressions": [
+              "闭眼口水"
+            ],
+            "conflicts": [
+              "呆呆眼",
+              "晕晕"
+            ],
+            "fidgetWeight": 1
+          },
+          {
+            "label": "吐魂",
+            "expressions": [
+              "吐魂"
+            ],
+            "conflicts": [
+              "吹泡泡糖"
+            ],
+            "fidget": false
+          }
+        ],
+        "fidgetNone": 20
+      },
+      {
+        "id": "mouth",
+        "label": "嘴部",
+        "none": "闭嘴",
+        "options": [
+          {
+            "label": "吐舌",
+            "expressions": [
+              "吐舌"
+            ],
+            "fidget": false
+          },
+          {
+            "label": "吹泡泡糖",
+            "motion": "BubbleGum",
+            "fidgetWeight": 1,
+            "conflicts": [
+              "吐魂"
+            ]
+          }
+        ],
+        "fidgetNone": 8
+      },
+      {
+        "id": "symbol",
+        "label": "符号",
+        "none": "无",
+        "options": [
+          {
+            "label": "问号",
+            "expressions": [
+              "问号"
+            ]
+          },
+          {
+            "label": "感叹号",
+            "expressions": [
+              "感叹号"
+            ]
+          },
+          {
+            "label": "流汗",
+            "expressions": [
+              "流汗"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "flower",
+        "label": "氛围：花花",
+        "none": "无",
+        "options": [
+          {
+            "label": "情绪花花",
+            "expressions": [
+              "情绪花花"
+            ]
+          }
+        ],
+        "fidgetNone": 20
+      },
+      {
+        "id": "heartbeat",
+        "label": "氛围：心跳",
+        "none": "无",
+        "options": [
+          {
+            "label": "心跳",
+            "expressions": [
+              "心跳"
+            ]
+          }
+        ],
+        "fidgetNone": 20
+      },
+      {
+        "id": "heart",
+        "label": "氛围：冒爱心",
+        "none": "无",
+        "options": [
+          {
+            "label": "冒爱心",
+            "expressions": [
+              "冒爱心"
+            ],
+            "fidget": false
+          }
+        ],
+        "fidgetNone": 20
+      },
+      {
+        "id": "cheek",
+        "label": "脸红",
+        "none": "否",
+        "options": [
+          {
+            "label": "脸红",
+            "expressions": [
+              "脸红"
+            ]
+          }
+        ],
+        "fidgetNone": 10
+      },
+      {
+        "id": "other",
+        "label": "其他",
+        "none": "无",
+        "options": [
+          {
+            "label": "手机换色",
+            "expressions": [
+              "手机换色"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "menu",
+        "label": "点菜",
+        "none": "无",
+        "options": [
+          {
+            "label": "点菜按下",
+            "expressions": [
+              "点菜按下"
+            ]
+          }
+        ]
+      }
+    ],
+    "looksByPhase": {
+      "thinking": {
+        "whale": "头顶鲸",
+        "lhand": "画笔"
+      },
+      "tool": {
+        "whale": "放桌上",
+        "rhand": "写本本",
+        "lhand": "画笔",
+        "symbol": "流汗"
+      },
+      "waiting": {
+        "whale": "头顶鲸",
+        "lhand": "橡皮",
+        "symbol": "问号"
+      },
+      "asking": {
+        "whale": "头顶鲸",
+        "rhand": "双手比耶",
+        "mood": "开心兴奋",
+        "symbol": "问号"
+      },
+      "helper": {
+        "whale": "头顶鲸",
+        "rhand": "喵喵手",
+        "mood": "调皮"
+      },
+      "queued": {
+        "whale": "头顶鲸",
+        "mood": "开心兴奋",
+        "symbol": "感叹号"
+      },
+      "done": {
+        "whale": "头顶鲸",
+        "lhand": "橡皮",
+        "mood": "开心兴奋",
+        "flower": "情绪花花"
+      },
+      "failed": {
+        "whale": "放桌上",
+        "lhand": "画笔",
+        "mood": "大哭",
+        "symbol": "流汗"
+      }
+    },
+    "motionGuards": {
+      "SprayWater": {
+        "whale": [
+          "头顶鲸",
+          "放桌上"
+        ]
+      },
+      "Ketchup": {
+        "lhand": [
+          "蛋包饭"
+        ]
+      }
+    },
+    "lines": {
+      "greet": [
+        "你好呀，我是鲸鱼娘～",
+        "今天也一起加油吧！",
+        "终于见到你了",
+        "摸鱼时间到？"
+      ],
+      "click": [
+        "呀！",
+        "痒痒的～",
+        "干嘛呀",
+        "摸摸头？",
+        "嘿嘿"
+      ],
+      "pat": [
+        "嘿嘿，好舒服～",
+        "再摸一下嘛",
+        "唔…头发要乱了"
+      ],
+      "tail": [
+        "呀！尾巴不能乱摸！",
+        "尾巴…痒痒的",
+        "别拽尾巴啦"
+      ],
+      "spin": [
+        "呜…转晕了…",
+        "别转了别转了"
+      ],
+      "reset": [
+        "表情归位～",
+        "清清爽爽"
+      ],
+      "loadFailed": [
+        "呜呜，模型加载失败了"
+      ],
+      "phase": {
+        "thinking": "让我想想…",
+        "tool": "正在忙…",
+        "waiting": "需要你确认一下",
+        "asking": "在等你回答哦",
+        "helper": "叫了帮手一起弄",
+        "queued": "收到，记下了",
+        "done": "搞定！",
+        "failed": "呜…出错了"
+      }
+    },
+    "sounds": {
+      "done": [[660, 0], [880, 0.13]],
+      "failed": [[370, 0], [277, 0.16]],
+      "waiting": [[520, 0], [660, 0.16]],
+      "asking": [[520, 0], [780, 0.16]]
+    },
+    "patReactions": [
+      "重锤出击",
+      "问号",
+      "星星眼"
+    ],
+    "tailReactions": [
+      "吐魂",
+      "问号"
+    ],
+    "spinReactions": [
+      "晕晕"
+    ],
+    "hiddenMotions": [
+      "OpenCase",
+      "BubbleGum"
+    ],
+    "fidgetSlots": [
+      "rhand",
+      "lhand",
+      "mood",
+      "cheek",
+      "mouth",
+      "eyes",
+      "selfie"
+    ]
+  },
+  "remarks": {
+    "pet": [
+      "摸摸头～",
+      "鲸鱼娘咕噜咕噜～",
+      "再摸一下嘛",
+      "嘿嘿，好舒服"
+    ],
+    "petCooldown": [
+      "让我缓缓……",
+      "头要被摸秃啦",
+      "先歇一会儿嘛"
+    ],
+    "feed": [
+      "小鱼干！",
+      "唔姆唔姆～",
+      "还有吗还有吗",
+      "谢谢投喂～"
+    ],
+    "feedCooldown": [
+      "刚吃过啦，有点撑",
+      "等会儿再喂我嘛"
+    ],
+    "noTreats": [
+      "小鱼干库存告急了……",
+      "没有小鱼干了吗"
+    ]
+  }
+}
