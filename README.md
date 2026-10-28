@@ -1,6 +1,6 @@
 # 大肥鱼 · Live2D 桌宠（个人向修改版）
 
-**当前版本：v1.2.0**（2026-10-28）· 模型与动画仍为 v1.1.0 高清包
+**当前版本：v1.2.1**（2026-10-28）· 模型与动画仍为 v1.1.0 高清包
 
 ![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)
 ![Non-Commercial](https://img.shields.io/badge/%E7%A6%81%E6%AD%A2%E5%95%86%E7%94%A8-NonCommercial-red.svg)
@@ -113,7 +113,7 @@ tools\patch-pet-menu.ps1
 | 能力 | 用法 |
 |---|---|
 | 隐藏大肥鱼 | 右键菜单；形象消失，**语音继续** |
-| 叫回 | macOS `⌥⌘P` / Windows `Ctrl+Alt+P`，或点托盘图标 |
+| 叫回 | macOS `⌥⌘P` / Windows `Ctrl+Alt+P`（无菜单栏图标，避免常驻占用） |
 | 退出桌宠 | 右键菜单；真退出（`display` 变为 `none`，进程结束） |
 | 辅助提示 | 设置页「显示位置」下方标出「都不显示」= 关闭桌宠 |
 

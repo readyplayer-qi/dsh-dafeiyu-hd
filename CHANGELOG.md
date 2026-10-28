@@ -1,5 +1,11 @@
 # 变更记录
 
+## v1.2.1 · 2026-10-28
+
+- 移除菜单栏（托盘）图标：不再常驻占位，只保留快捷键（Mac Option+Cmd+P / Win Ctrl+Alt+P）
+- 修复：点「退出」后旧进程被守护重启，看起来像“退了又回来”；现退出会写入 `display: none`，重启后不再出现
+- 同步更新 `tools/patch-pet-menu.sh` / `patch-pet-menu.ps1`
+
 ## v1.2.0 · 2026-10-28
 
 新增可选交互增强（`tools/patch-pet-menu.sh`，插件更新后需重跑）：
