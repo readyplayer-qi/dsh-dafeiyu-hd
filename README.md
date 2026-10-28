@@ -101,7 +101,11 @@ https://github.com/A8Chann/dsh-pet-live2d
 装好后跑一次（**插件更新后需要重跑**）：
 
 ```bash
+# macOS / Linux
 bash tools/patch-pet-menu.sh
+
+# Windows（右键 → 使用 PowerShell 运行）
+tools\patch-pet-menu.ps1
 ```
 
 加上这些：
@@ -109,7 +113,7 @@ bash tools/patch-pet-menu.sh
 | 能力 | 用法 |
 |---|---|
 | 隐藏大肥鱼 | 右键菜单；形象消失，**语音继续** |
-| 叫回 | `⌥⌘P`，或点菜单栏图标 |
+| 叫回 | macOS `⌥⌘P` / Windows `Ctrl+Alt+P`，或点托盘图标 |
 | 退出桌宠 | 右键菜单；真退出（`display` 变为 `none`，进程结束） |
 | 辅助提示 | 设置页「显示位置」下方标出「都不显示」= 关闭桌宠 |
 
