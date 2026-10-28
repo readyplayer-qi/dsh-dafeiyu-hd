@@ -41,6 +41,8 @@ if "hidePet" not in s:
 """  // 隐藏 / 退出（都只动 Helper，不动 DSH）
   hidePet() { ipcRenderer.send('pet:hide'); },
   quitPet() { ipcRenderer.send('pet:quit'); },
+  // 主进程通知静音/恢复（退出时用）
+  onPetMuted(cb) { ipcRenderer.on('pet-muted', (_e, v) => cb(!!v)); },
   openDshSite(url) {""", 1)
     open(p, "w").write(s)
 
@@ -112,7 +114,7 @@ app.whenReady().then(() => {""", 1)
       const put = await bridgeRequest('PUT', '/dsh-pet-7340/config', JSON.stringify({ pets }));
       if (!put || put.status !== 200) throw new Error('config save status ' + (put && put.status));
       setHiddenFlag(false);
-      petWindows().forEach((w) => w.hide());
+      petWindows().forEach((w) => { try { w.webContents.send('pet-muted', true); } catch {} w.hide(); });
       setTimeout(() => { try { app.quit(); } catch {} }, 2500);
     } catch (e) {
       console.error('[dsh-pet helper] quit failed:', e && e.message ? e.message : e);
@@ -125,48 +127,3 @@ app.whenReady().then(() => {""", 1)
     open(p, "w").write(s)
 print("菜单补丁已应用")
 PY
-
-# ---------------- lib/client.js（设置页：下拉下方加粗提示） ----------------
-P="$(dirname "$H")/../lib/client.js"
-python3 - "$P" <<'PY2'
-import sys, os, time
-p = sys.argv[1]
-if not os.path.exists(p): raise SystemExit(0)
-s = open(p).read()
-if "彻底关闭桌宠" in s: raise SystemExit(0)
-b = p + ".bak-" + time.strftime("%H%M")
-open(b, "w").write(s)
-s = s.replace('"display.none": "都不显示"', '"display.none": "都不显示（关闭桌宠）"', 1)
-old = '''								field(t("displayLabel"), h("select", {
-									className: inputClass,
-									value: cur.display,
-									disabled: busy,
-									onChange: (e) => updateSel({ display: e.target.value }),
-									children: PET_DISPLAYS.map((d) => h("option", {
-										key: d,
-										value: d,
-										children: t("display." + d)
-									}))
-								}), t("displayHint"), true)'''
-new = '''								h("div", { className: "dsh-pet-cfg__field", children: [
-									h("span", { key: "l", className: "dsh-pet-cfg__flabel", children: [t("displayLabel"), q(t("displayHint"), true)] }),
-									h("select", {
-										className: inputClass,
-										value: cur.display,
-										disabled: busy,
-										onChange: (e) => updateSel({ display: e.target.value }),
-										children: PET_DISPLAYS.map((d) => h("option", { key: d, value: d, children: t("display." + d) }))
-									}),
-									h("span", {
-										key: "n",
-										style: { position: "absolute", left: "0", bottom: "-13px", fontSize: "10px", fontWeight: "700", color: "#C9A96A", whiteSpace: "nowrap" },
-										children: "「都不显示」= 关闭桌宠"
-									})
-								])'''
-if old in s:
-    s = s.replace(old, new, 1)
-    open(p, "w").write(s)
-    print("设置页提示已加")
-else:
-    print("设置页结构变了，跳过（需手动看）")
-PY2
