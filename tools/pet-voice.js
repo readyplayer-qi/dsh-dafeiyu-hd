@@ -1,6 +1,3 @@
-/* 大肥鱼语音 + 成长记
- * 作者：ReadyPlayer_柒（MIT）
- */
 /* 大肥鱼语音：监听桌面气泡，调本地 TTS 播放 */
 (() => {
   if (window.__petVoice) return;
@@ -9,8 +6,18 @@
   const spoken = new Set();
   let current = null;
 
+  let muted = false;
+  const isHidden = () => muted;   // 只有显式静音（退出）才闭嘴；隐藏时照读
+  // 主进程直接告知：桌宠被隐藏/退出 → 静音（Electron 隐藏窗口时 visibilityState 不一定变）
+  if (window.petBridge && window.petBridge.onPetMuted) {
+    window.petBridge.onPetMuted((v) => {
+      muted = !!v;
+      if (muted && current) { try { current.pause(); } catch (e) {} current = null; }
+    });
+  }
   function speak(text) {
     const t = (text || "").trim();
+    if (isHidden()) return;
     if (!t || t.length < 2) return;
     if (/^[¥￥\d.,\s]+$/.test(t)) return;          // 纯数字/余额不念
     if (t.indexOf("余额") >= 0) return;
@@ -23,7 +30,7 @@
       fetch(BASE + "/tts?text=" + encodeURIComponent(t.slice(0, 80)))
         .then(r => (r.ok ? r.blob() : null))
         .then(b => {
-          if (!b) return;
+          if (!b || isHidden()) return;
           const a = new Audio(URL.createObjectURL(b));
           current = a;
           a.play().catch(() => {});
