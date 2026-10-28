@@ -66,7 +66,7 @@ if ($s -notmatch "HIDDEN_FLAG") {
   Backup $p
   $s = $s.Replace(
     "const { app, BrowserWindow, ipcMain, screen, shell, protocol } = electronApi;",
-    "const { app, BrowserWindow, ipcMain, screen, shell, protocol, Tray, Menu, nativeImage, globalShortcut } = electronApi;")
+    "const { app, BrowserWindow, ipcMain, screen, shell, protocol, globalShortcut } = electronApi;")
 
   $block = @"
 /* ---------- 隐藏标记（跨 Helper 重启记住） ---------- */
@@ -87,29 +87,12 @@ function togglePet() {
   if (!wins.length) return;
   if (petVisible()) { wins.forEach((w) => w.hide()); setHiddenFlag(true); }
   else { setHiddenFlag(false); wins.forEach((w) => w.showInactive()); }
-  refreshTrayMenu();
-}
-function refreshTrayMenu() {
-  if (!tray) return;
-  tray.setContextMenu(Menu.buildFromTemplate([
-    { label: petVisible() ? '隐藏大肥鱼' : '显示大肥鱼', click: () => togglePet() },
-    { type: 'separator' },
-    { label: '退出桌宠', click: () => { setHiddenFlag(true); petWindows().forEach((w) => w.hide()); refreshTrayMenu(); } },
-  ]));
-  tray.setToolTip(petVisible() ? '大肥鱼（Ctrl+Alt+P 隐藏）' : '大肥鱼（Ctrl+Alt+P 叫回）');
 }
 function setupTray() {
-  try {
-    const iconPath = path.join(__dirname, '..', '..', 'assets', 'logo.png');
-    let img = nativeImage.createFromPath(iconPath);
-    if (!img.isEmpty()) img = img.resize({ width: 16, height: 16 });
-    tray = new Tray(img);
-    tray.on('click', () => togglePet());
-    try { globalShortcut.register('CommandOrControl+Alt+P', () => togglePet()); } catch {}
-    refreshTrayMenu();
-    for (const w of petWindows()) { w.on('show', refreshTrayMenu); w.on('hide', refreshTrayMenu); }
-  } catch (e) { console.error('[dsh-pet helper] tray setup failed:', e && e.message); }
+  // 不建菜单栏图标；只注册快捷键（Ctrl+Alt+P）
+  try { globalShortcut.register('CommandOrControl+Alt+P', () => togglePet()); } catch {}
 }
+
 app.whenReady().then(() => {
 "@
   $s = $s.Replace("app.whenReady().then(() => {", $block)
@@ -124,8 +107,8 @@ app.whenReady().then(() => {
 "@)
 
   $s = $s.Replace("  ipcMain.on('pet:open-site', (event, payload) => {", @"
-  ipcMain.on('pet:hide', () => { setHiddenFlag(true); petWindows().forEach((w) => w.hide()); refreshTrayMenu(); });
-  ipcMain.on('pet:show', () => { setHiddenFlag(false); petWindows().forEach((w) => w.showInactive()); refreshTrayMenu(); });
+  ipcMain.on('pet:hide', () => { setHiddenFlag(true); petWindows().forEach((w) => w.hide()); });
+  ipcMain.on('pet:show', () => { setHiddenFlag(false); petWindows().forEach((w) => w.showInactive()); });
   ipcMain.on('pet:quit', async () => {
     try {
       const got = await bridgeRequest('GET', '/dsh-pet-7340/config');
@@ -143,7 +126,6 @@ app.whenReady().then(() => {
       console.error('[dsh-pet helper] quit failed:', e && e.message ? e.message : e);
       setHiddenFlag(true);
       petWindows().forEach((w) => w.hide());
-      refreshTrayMenu();
     }
   });
   ipcMain.on('pet:open-site', (event, payload) => {

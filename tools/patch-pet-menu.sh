@@ -83,17 +83,8 @@ function refreshTrayMenu() {
   tray.setToolTip(petVisible() ? '大肥鱼（⌥⌘P 隐藏）' : '大肥鱼（⌥⌘P 叫回）');
 }
 function setupTray() {
-  try {
-    const iconPath = path.join(__dirname, '..', '..', 'assets', 'logo.png');
-    let img = nativeImage.createFromPath(iconPath);
-    if (!img.isEmpty()) { img = img.resize({ width: 18, height: 18 }); img.setTemplateImage(true); }
-    tray = new Tray(img);
-    if (img.isEmpty()) tray.setTitle('🐟');
-    tray.on('click', () => togglePet());
-    try { globalShortcut.register('CommandOrControl+Alt+P', () => togglePet()); } catch {}
-    refreshTrayMenu();
-    for (const w of petWindows()) { w.on('show', refreshTrayMenu); w.on('hide', refreshTrayMenu); }
-  } catch (e) { console.error('[dsh-pet helper] tray setup failed:', e && e.message); }
+  // 不建菜单栏图标；只注册快捷键（Option+Cmd+P / Ctrl+Alt+P）
+  try { globalShortcut.register('CommandOrControl+Alt+P', () => togglePet()); } catch {}
 }
 app.whenReady().then(() => {""", 1)
     s = s.replace("  createPetWindows();", """  createPetWindows();
