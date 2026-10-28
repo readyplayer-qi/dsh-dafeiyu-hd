@@ -51,7 +51,7 @@ p = os.path.join(H, "main.js"); s = open(p).read()
 if "HIDDEN_FLAG" not in s:
     backup(p)
     s = s.replace("const { app, BrowserWindow, ipcMain, screen, shell, protocol } = electronApi;",
-"const { app, BrowserWindow, ipcMain, screen, shell, protocol, Tray, Menu, nativeImage, globalShortcut } = electronApi;", 1)
+"const { app, BrowserWindow, ipcMain, screen, shell, protocol, globalShortcut } = electronApi;", 1)
     s = s.replace("app.whenReady().then(() => {", """
 /* ---------- 隐藏标记（跨 Helper 重启记住） ---------- */
 const HIDDEN_FLAG = path.join(app.getPath('userData'), 'pet-hidden.flag');
@@ -63,7 +63,6 @@ function setHiddenFlag(v) {
   } catch {}
 }
 /* ---------- 托盘：真·退出 + 叫回 ---------- */
-let tray = null;
 function petWindows() { return Array.from(windows.values()).filter((w) => !w.isDestroyed()); }
 function petVisible() { return petWindows().some((w) => w.isVisible()); }
 function togglePet() {
@@ -71,18 +70,8 @@ function togglePet() {
   if (!wins.length) return;
   if (petVisible()) { wins.forEach((w) => w.hide()); setHiddenFlag(true); }
   else { setHiddenFlag(false); wins.forEach((w) => w.showInactive()); }
-  refreshTrayMenu();
 }
-function refreshTrayMenu() {
-  if (!tray) return;
-  tray.setContextMenu(Menu.buildFromTemplate([
-    { label: petVisible() ? '隐藏大肥鱼' : '显示大肥鱼', click: () => togglePet() },
-    { type: 'separator' },
-    { label: '退出桌宠', click: () => { setHiddenFlag(true); petWindows().forEach((w) => w.hide()); refreshTrayMenu(); } },
-  ]));
-  tray.setToolTip(petVisible() ? '大肥鱼（⌥⌘P 隐藏）' : '大肥鱼（⌥⌘P 叫回）');
-}
-function setupTray() {
+function setupShortcut() {
   // 不建菜单栏图标；只注册快捷键（Option+Cmd+P / Ctrl+Alt+P）
   try { globalShortcut.register('CommandOrControl+Alt+P', () => togglePet()); } catch {}
 }
@@ -90,9 +79,9 @@ app.whenReady().then(() => {""", 1)
     s = s.replace("  createPetWindows();", """  createPetWindows();
   // 防回弹：标记存在时，任何 show 都立刻藏回去
   for (const w of windows.values()) { w.on('show', () => { if (isHiddenFlag()) w.hide(); }); }
-  setupTray();""", 1)
-    s = s.replace("  ipcMain.on('pet:open-site', (event, payload) => {", """  ipcMain.on('pet:hide', () => { setHiddenFlag(true); petWindows().forEach((w) => w.hide()); refreshTrayMenu(); }); // 只藏形象，语音继续
-  ipcMain.on('pet:show', () => { setHiddenFlag(false); petWindows().forEach((w) => w.showInactive()); refreshTrayMenu(); });
+  setupShortcut();""", 1)
+    s = s.replace("  ipcMain.on('pet:open-site', (event, payload) => {", """  ipcMain.on('pet:hide', () => { setHiddenFlag(true); petWindows().forEach((w) => w.hide()); }); // 只藏形象，语音继续
+  ipcMain.on('pet:show', () => { setHiddenFlag(false); petWindows().forEach((w) => w.showInactive()); });
   // 退出：真退出——把 display 改成 none，宿主不再拉起 Helper（回来：设置→显示位置→仅桌面）
   ipcMain.on('pet:quit', async () => {
     try {
@@ -111,8 +100,7 @@ app.whenReady().then(() => {""", 1)
       console.error('[dsh-pet helper] quit failed:', e && e.message ? e.message : e);
       setHiddenFlag(true);
       petWindows().forEach((w) => w.hide());
-      refreshTrayMenu();
-    }
+        }
   });
   ipcMain.on('pet:open-site', (event, payload) => {""", 1)
     open(p, "w").write(s)
