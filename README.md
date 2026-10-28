@@ -91,6 +91,11 @@ https://github.com/A8Chann/dsh-pet-live2d
 
 然后重启 DSH。
 
+## 推荐音色
+
+配合 MiniMax 预设音色 **憨憨萌兽**（`Chinese (Mandarin)_Cute_Spirit`）效果最好——
+清脆、带一点兽感，贴近角色设定。在本地 TTS 配置里把 `voice` 改成这个 ID 即可。
+
 ## 可选增强：隐藏 / 退出 / 快捷键
 
 装好后跑一次（**插件更新后需要重跑**）：
