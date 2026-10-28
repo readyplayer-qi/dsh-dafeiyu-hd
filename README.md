@@ -1,5 +1,7 @@
 # 大肥鱼 · Live2D 桌宠（个人向修改版）
 
+**当前版本：v1.2.0**（2026-10-28）· 模型与动画仍为 v1.1.0 高清包
+
 ![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)
 ![Non-Commercial](https://img.shields.io/badge/%E7%A6%81%E6%AD%A2%E5%95%86%E7%94%A8-NonCommercial-red.svg)
 
@@ -88,6 +90,25 @@ https://github.com/A8Chann/dsh-pet-live2d
 ```
 
 然后重启 DSH。
+
+## 可选增强：隐藏 / 退出 / 快捷键
+
+装好后跑一次（**插件更新后需要重跑**）：
+
+```bash
+bash tools/patch-pet-menu.sh
+```
+
+加上这些：
+
+| 能力 | 用法 |
+|---|---|
+| 隐藏大肥鱼 | 右键菜单；形象消失，**语音继续** |
+| 叫回 | `⌥⌘P`，或点菜单栏图标 |
+| 退出桌宠 | 右键菜单；真退出（`display` 变为 `none`，进程结束） |
+| 辅助提示 | 设置页「显示位置」下方标出「都不显示」= 关闭桌宠 |
+
+退出后想再叫回来：**设置 → 桌宠配置 → 显示位置 → 仅桌面 → 保存**。
 
 ## 资源占用
 
