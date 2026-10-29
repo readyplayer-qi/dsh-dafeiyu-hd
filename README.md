@@ -1,6 +1,6 @@
 # 大肥鱼 · Live2D 桌宠（个人向修改版）
 
-**当前版本：v1.2.1**（2026-10-28）· 模型与动画仍为 v1.1.0 高清包
+**当前版本：v1.2.2**（2026-10-29）· 模型与动画仍为 v1.1.0 高清包
 
 ![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)
 ![Non-Commercial](https://img.shields.io/badge/%E7%A6%81%E6%AD%A2%E5%95%86%E7%94%A8-NonCommercial-red.svg)
@@ -91,10 +91,60 @@ https://github.com/A8Chann/dsh-pet-live2d
 
 然后重启 DSH。
 
+## 让桌宠说话（可选，默认无声）
+
+本包只含模型、动画、配置，**不含 TTS 引擎**。装完默认只会看到画面和动作，**没有声音**。
+
+### 免费方案（edge-tts，不需要任何 key）
+
+1. 安装 edge-tts：
+
+   ```bash
+   pip install edge-tts
+   ```
+
+2. 启动语音服务（保持运行）：
+
+   ```bash
+   python3 tools/tts_server.py
+   ```
+
+   自检（另开终端）：
+
+   ```bash
+   curl http://127.0.0.1:18888/health
+   ```
+
+3. 装语音挂钩（**插件更新后需要重跑**）：
+
+   ```bash
+   bash tools/patch-pet-voice.sh
+   ```
+
+4. 重启 DSH。
+
+服务只监听 `127.0.0.1:18888`，不会暴露到局域网；edge-tts 需要联网，音色是微软的公共音色。
+
+**Windows**：先 `python tools\tts_server.py`；语音补丁建议用 `tools\patch-pet-voice.ps1`（右键运行）；
+没有 PowerShell 时，也可以手动把 `tools/pet-voice.js` 复制到
+`%USERPROFILE%\.dsh\profiles\desktop\node_modules\dsh-pet\runtime\electron-helper\`，
+并在同目录 `index.html` 的 `renderer.js` 后面加一行：
+`<script src="./pet-voice.js"></script>`。
+
+> **Windows 脚本未实测**：`patch-pet-voice.ps1` 的逻辑与 macOS 版一致，但作者没有 Windows 机器，
+> 未经实测。执行后没有反应，多半是字符串匹配没命中，请提 Issue 并附上插件版本号。
+
+### 想用自己的音色？
+
+见 [自定义音色.md](自定义音色.md)：用**你自己的 MiniMax 账号**复刻（`tools/minimax_clone.py`），
+`tools/tts_server.py` 支持 edge/minimax 双引擎。费用和 key 都是你自己的。
+本包**不包含**任何 API key、克隆音色或参考音。
+
 ## 推荐音色
 
-配合 MiniMax 预设音色 **憨憨萌兽**（`Chinese (Mandarin)_Cute_Spirit`）效果最好——
-清脆、带一点兽感，贴近角色设定。在本地 TTS 配置里把 `voice` 改成这个 ID 即可。
+如果你自备 MiniMax TTS 服务，配合预设音色 **憨憨萌兽**（`Chinese (Mandarin)_Cute_Spirit`）
+效果最好——清脆、带一点兽感，贴近角色设定。在本地 TTS 配置里把 `voice` 改成这个 ID 即可。
+（免费方案用的是 edge-tts，不需要这个 key。）
 
 ## 可选增强：隐藏 / 退出 / 快捷键
 

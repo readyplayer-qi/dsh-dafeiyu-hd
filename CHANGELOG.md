@@ -1,5 +1,12 @@
 # 变更记录
 
+## v1.2.2 · 2026-10-29
+
+- 语音改为可选：默认无声；新增 `tools/tts_server.py`（免费 edge-tts）和 `tools/patch-pet-voice.sh`（安装语音 + 设置页提示）
+- 新增「自定义音色」教程 `自定义音色.md` + `tools/minimax_clone.py`：用你自己的 MiniMax 账号复刻；包内不含 key/voice_id/参考音
+- `tools/tts_server.py` 支持 edge / minimax 双引擎；没有 key 自动回落免费 edge
+- 模型与动画未变，高清包仍是 v1.1.0 的 zip
+
 ## v1.2.1 · 2026-10-28
 
 - 移除菜单栏（托盘）图标：不再常驻占位，只保留快捷键（Mac Option+Cmd+P / Win Ctrl+Alt+P）
@@ -7,6 +14,8 @@
 - 同步更新 `tools/patch-pet-menu.sh` / `patch-pet-menu.ps1`
 - 修复补丁脚本：右键「隐藏大肥鱼 / 退出桌宠」的点击处理原先锚点写错（`if (leaf.anim)` 少了 `!`），新装用户点了没反应
 - 补丁脚本改为逐项补齐：重复执行只补缺失项；锚点对不上会报错，不再打印“已应用”
+- 语音改为可选（默认无声）：新增 `tools/tts_server.py`（免费 edge-tts）与 `tools/patch-pet-voice.sh`；README 补「让桌宠说话」
+- 新增可选「自定义音色」教程 `自定义音色.md` + `tools/minimax_clone.py`（用户自己的 MiniMax 账号；包内不含 key/音色）
 
 ## v1.2.0 · 2026-10-28
 
